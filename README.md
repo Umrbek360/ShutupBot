@@ -4,7 +4,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
 ![Aiogram](https://img.shields.io/badge/Aiogram-3.22+-green?style=for-the-badge&logo=telegram)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge) 
 
 **Telegram guruhlarida taqiqlangan so'zlarni avtomatik ravishda nazorat qiluvchi aqlli moderatsiya boti**
 
