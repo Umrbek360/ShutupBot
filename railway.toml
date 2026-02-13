@@ -1,0 +1,13 @@
+# Railway deploy konfiguratsiyasi - ShutupBot
+# https://docs.railway.com/config-as-code/reference
+
+[build]
+# Python loyihasi - Railpack avtomatik requirements.txt ni ishlatadi
+builder = "RAILPACK"
+
+[deploy]
+# Telegram bot polling rejimida ishlaydi (web server emas)
+startCommand = "python bot.py"
+# Xatolikda avtomatik qayta ishga tushirish
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10

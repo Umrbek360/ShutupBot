@@ -1,0 +1,9 @@
+python-3.11
+# -----------------------------------------------------------------------------
+# Bu fayl platformaga (Railway, Heroku) qaysi Python versiyasidan foydalanishni
+# aytadi. Faqat birinchi qator o'qiladi — yuqoridagi "python-3.11" kerak.
+#
+# Nima uchun 3.11? Bot kodi Python 3.11+ da yozilgan va aiogram 3.22
+# shu versiyalar bilan to'g'ri ishlaydi. Boshqa versiya (masalan 3.10) ham
+# ishlashi mumkin, lekin 3.11 tavsiya etiladi.
+# -----------------------------------------------------------------------------

@@ -4,11 +4,12 @@
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python)
 ![Aiogram](https://img.shields.io/badge/Aiogram-3.22+-green?style=for-the-badge&logo=telegram)
+![Railway](https://img.shields.io/badge/Railway-Deploy_ready-0B0D0E?style=for-the-badge&logo=railway)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
 **Telegram guruhlarida taqiqlangan so'zlarni avtomatik ravishda nazorat qiluvchi aqlli moderatsiya boti**
 
-[🚀 O'rnatish](#-o'rnatish) • [⚙️ Sozlash](#️-sozlash) • [📖 Foydalanish](#-foydalanish) • [🔧 Xususiyatlar](#-xususiyatlar)
+[🚀 O'rnatish](#-o'rnatish) • [🚂 Railway deploy](#-railway-ga-deploy-qilish) • [⚙️ Sozlash](#️-sozlash) • [📖 Foydalanish](#-foydalanish) • [🔧 Xususiyatlar](#-xususiyatlar)
 
 </div>
 
@@ -101,6 +102,61 @@ python bot.py
 
 ---
 
+## 🚂 Railway ga deploy qilish
+
+Botni [Railway](https://railway.app) da bepul (yoki pullik) hostingda 24/7 ishlatish mumkin. Quyidagi qadamlarni bajaring.
+
+### 1. Railway hisob ochish
+
+- [railway.app](https://railway.app) ga kiring
+- **Login** → GitHub bilan kirish (yoki email)
+
+### 2. Yangi loyiha va deploy
+
+1. **New Project** bosing.
+2. **Deploy from GitHub repo** tanlang.
+3. GitHubda ShutupBot reponi tanlang (avval fork qilib oling yoki o'z repoingizga push qiling).
+4. **Branch**: `main` (yoki asosiy branchingiz).
+5. **Root Directory** bo'sh qoldiring (loyiha ildizida).
+6. **Deploy** bosilgach Railway avtomatik build qiladi (`requirements.txt` va `railway.toml` ishlatiladi).
+
+### 3. Muhit o'zgaruvchisi (BOT_TOKEN)
+
+1. Ochiq servicingizda **Variables** bo'limiga o'ting.
+2. **+ New Variable** bosing.
+3. **BOT_TOKEN** nomi, qiymati – [@BotFather](https://t.me/BotFather) dan olgan token (masalan: `7123456789:AAH...`).
+4. Saqlang – deploy avtomatik qayta ishga tushadi.
+
+### 4. Start command tekshirish
+
+- **Settings** → **Deploy** bo'limida **Start Command** quyidagicha bo'lishi kerak: `python bot.py`
+- Agar `railway.toml` repoda bo'lsa, bu avtomatik o'rnatiladi. Yo'q bo'lsa, qo'lda `python bot.py` kiriting.
+
+### 5. Loglar va holat
+
+- **Deployments** → oxirgi deploy → **View Logs**: bot ishga tushganini va xatolik yo'qligini ko'rasiz.
+- Muvaffaqiyatli ishga tushganda logda: `Starting Telegram Moderation Bot...` ko'rinadi.
+
+### 6. Muhim eslatmalar
+
+| Narsa | Tavsif |
+|--------|--------|
+| **Worker** | Bot web server emas, worker – PORT ochish shart emas. |
+| **Token** | `BOT_TOKEN` faqat Railway Variables da saqlang, kodga yozmang. |
+| **config.py** | Taqiqlangan so'zlar va jazo muddatlari – repodagi `config.py` dan olinadi. O'zgartirish uchun kodni o'zgartirib push qiling. |
+| **Qayta deploy** | Har safar `main` ga push qilsangiz, Railway avtomatik yangi deploy qiladi (GitHub ulangan bo'lsa). |
+
+### Loyihadagi Railway bilan bog'liq fayllar
+
+| Fayl | Vazifasi |
+|------|----------|
+| `railway.toml` | Start command va restart sozlamalari |
+| `Procfile` | `worker: python bot.py` (qo'shimcha platformalar uchun) |
+| `runtime.txt` | Python 3.11 versiyasi |
+| `.env.example` | Lokal va Railway da qanday o'zgaruvchi kerakligi namuni |
+
+---
+
 ## ⚙️ Sozlash
 
 ### 🔧 config.py faylini sozlash
@@ -184,9 +240,13 @@ Bot to'g'ri ishlashi uchun quyidagi huquqlarga ega bo'lishi kerak:
 ShutupBot/
 ├── bot.py              # Asosiy bot kodi
 ├── config.py           # Konfiguratsiya sozlamalari
-├── pyproject.toml      # Loyiha konfiguratsiyasi
 ├── requirements.txt    # Kerakli kutubxonalar
-└── README.md          # Loyiha hujjati
+├── pyproject.toml      # Loyiha konfiguratsiyasi
+├── railway.toml        # Railway deploy sozlamalari
+├── Procfile            # Worker process (Railway/Heroku)
+├── runtime.txt         # Python versiyasi (3.11)
+├── .env.example        # Muhit o'zgaruvchilari namuni
+└── README.md           # Loyiha hujjati
 ```
 
 ### 🔄 Asosiy komponentlar
